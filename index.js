@@ -26,7 +26,7 @@ function getAADTokenFromMSI(endpoint, secret, resource) {
 
 module.exports = {
     /**
-     * @param {{aadAccessToken:*}} props
+     * @param {{aadAccessToken: string|()=>string}} props
      */
     config(props = {}) {
         const { aadAccessToken } = props;
