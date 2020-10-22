@@ -100,10 +100,12 @@ Depending upon your scenario, you can obtain this token in a number of ways:
 
 ```js
 // with string:
-require('dotenv-keyvault').config(aadAcccessToken);
+require('dotenv-keyvault').config({ aadAcccessToken: "{YOUR_ACCESS_TOKEN}" });
 // with function:
-require('dotenv-keyvault').config(function getOwnAccessToken() {
-    // code to acquire and return an Azure AD Access Token goes here
+require('dotenv-keyvault').config({
+    aadAcccessToken: function getOwnAccessToken() {
+        // code to acquire and return an Azure AD Access Token goes here
+    }
 });
 ```
 
@@ -124,6 +126,7 @@ ENVVAR2=somevalue2
 In JS, you will be able to access these 4 values using:
 
 ```js
+const dotenvConfig = require('dotenv').config();
 const keyVaultGetter = require('dotenv-keyvault').config();
 const ensureKeyVaultLoaded = keyVaultGetter(dotenvConfig);
 ensureKeyVaultLoaded.then(function keyvaultLoaded(envWithKeyvaultSecrets) {
